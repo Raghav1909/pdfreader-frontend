@@ -13,7 +13,7 @@ Simple PDF viewer/reader which uses a [lightbox module](https://yet-another-reac
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/https://github.com/Raghav1909/pdfreader-frontend.git
+   git clone https://github.com/Raghav1909/pdfreader-frontend.git
    ```
    
 2. **Navigate to the project directory:**
