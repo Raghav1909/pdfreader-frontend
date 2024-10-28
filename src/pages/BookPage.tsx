@@ -1,39 +1,54 @@
-import { useState, useRef } from "react"
 import { useGetBookQuery } from "@/api/books.api"
-import Lightbox from "yet-another-react-lightbox"
-import "yet-another-react-lightbox/styles.css"
-import Page1 from "@/assets/book/AI-Powered Log Monitoring and Anomaly Detection_page-0001.jpg"
-import Page2 from "@/assets/book/AI-Powered Log Monitoring and Anomaly Detection_page-0002.jpg"
-import Page3 from "@/assets/book/AI-Powered Log Monitoring and Anomaly Detection_page-0003.jpg"
-import Page4 from "@/assets/book/AI-Powered Log Monitoring and Anomaly Detection_page-0004.jpg"
+import Header from "@/components/Header"
 
-import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen"
-import Counter from "yet-another-react-lightbox/plugins/counter"
-import "yet-another-react-lightbox/plugins/counter.css"
-import { Slideshow, Thumbnails, Zoom } from "yet-another-react-lightbox/plugins"
-import "yet-another-react-lightbox/plugins/thumbnails.css"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router"
+import ImageDisplay from "@/components/ImageDisplay"
 
 export default function BookPage() {
-  const [open, setOpen] = useState(false)
-  const { data: book, isLoading, error } = useGetBookQuery()
+  const { data: book, isLoading, error } = useGetBookQuery(1)
+  const navigate = useNavigate()
 
   return (
-    <>
-      <button type="button" onClick={() => setOpen(true)}>
-        Open Lightbox
-      </button>
+    <div>
+      <Header />
+      <div className="pl-10 p-4">
+        <Button onClick={() => navigate("/")}>Go Back</Button>
+      </div>
 
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        plugins={[Counter, Fullscreen, Slideshow, Thumbnails, Zoom]}
-        slides={[
-          { src: Page1 },
-          { src: Page2 },
-          { src: Page3 },
-          { src: Page4 },
-        ]}
-      />
-    </>
+      <Tabs defaultValue="info" className="max-w-7xl mx-auto text-center">
+        <TabsList>
+          <TabsTrigger value="info">Basic Info</TabsTrigger>
+          <TabsTrigger value="img">Images</TabsTrigger>
+        </TabsList>
+        <TabsContent
+          value="info"
+          className="bg-secondary rounded-md drop-shadow-sm p-4"
+        >
+          {isLoading && <p>Loading...</p>}
+          {error && <p>Error: {error.message}</p>}
+          {book && (
+            <div className="text-left">
+              <p>
+                <span className="font-bold mr-2">Name:</span>
+                {book.name}
+              </p>
+              <p>
+                <span className="font-bold mr-2">Author:</span>
+                {book.author}
+              </p>
+              <p>
+                <span className="font-bold mr-2">No of Pages:</span>
+                {book.no_of_pages}
+              </p>
+            </div>
+          )}
+        </TabsContent>
+        <TabsContent value="img">
+          <ImageDisplay />
+        </TabsContent>
+      </Tabs>
+    </div>
   )
 }
