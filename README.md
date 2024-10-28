@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+# PDF Reader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+Simple PDF viewer/reader which uses a [lightbox module](https://yet-another-react-lightbox.com/) to display pdf.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Links to Related Repositories:
 
-## Expanding the ESLint configuration
+- PDF Reader backend: [https://github.com/Samskriti-Foundation/pdfreader-backend](https://github.com/Samskriti-Foundation/nyaya-dictionary-frontend-main)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clone the Repository:**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+   ```bash
+   git clone https://github.com/https://github.com/Raghav1909/pdfreader-frontend.git
+   ```
+   
+2. **Navigate to the project directory:**
+  
+    ```bash
+    cd pdfreader-frontend
+    ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. **Install Dependencies:**
+   
+    a. Install yarn if not already installed
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+    ```bash
+    npm i -g yarn
+    ```
+    
+    b. Install dependencies through yarn
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   yarn
+   ```
+
+3. **Initialize environment variables**
+
+    ```bash
+    echo "VITE_API_URL = http://localhost:8000" > .env  # Use your custom URL if needed
+    ```
+
+4. **Start server:**
+
+   ```bash
+   yarn dev
+   ```
