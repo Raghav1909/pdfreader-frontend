@@ -16,6 +16,10 @@ type TBook = {
   no_of_pages: number
 }
 
+type TBookPdf = {
+  paths: string[]
+}
+
 const getBooks = async () => {
   const response = await api.get("/")
   return response.data
@@ -37,5 +41,17 @@ export const useGetBookQuery = (id: number) => {
   return useQuery<TBook>({
     queryKey: ["books", id],
     queryFn: () => getBook(id),
+  })
+}
+
+const getBookPdf = async (id: number) => {
+  const response = await api.get(`${id}/pdf`)
+  return response.data
+}
+
+export const useGetBookPdfQuery = (id: number) => {
+  return useQuery<TBookPdf>({
+    queryKey: ["pdf", id],
+    queryFn: () => getBookPdf(id),
   })
 }

@@ -7,9 +7,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Button } from "./ui/button"
+import { useNavigate } from "react-router"
 
 const BooksList = () => {
   const { data: books, isLoading, error } = useGetBooksQuery()
+  const navigate = useNavigate()
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -20,7 +23,7 @@ const BooksList = () => {
   }
 
   return (
-    <Table>
+    <Table className="max-w-7xl mx-auto">
       <TableHeader>
         <TableRow>
           <TableHead>ID</TableHead>
@@ -39,6 +42,9 @@ const BooksList = () => {
               <TableCell>{book.name}</TableCell>
               <TableCell>{book.author}</TableCell>
               <TableCell>{book.no_of_pages}</TableCell>
+              <TableCell>
+                <Button onClick={() => navigate(`/${book.id}`)}>View</Button>
+              </TableCell>
             </TableRow>
           ))}
       </TableBody>
