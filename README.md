@@ -6,7 +6,7 @@ Simple PDF viewer/reader which uses a [lightbox module](https://yet-another-reac
 
 ## Links to Related Repositories:
 
-- PDF Reader backend: [https://github.com/Samskriti-Foundation/pdfreader-backend](https://github.com/Samskriti-Foundation/nyaya-dictionary-frontend-main)
+- PDF Reader backend: [https://github.com/Raghav1909/pdfreader-backend](https://github.com/Raghav1909/pdfreader-backend)
 
 ## Installation
 
